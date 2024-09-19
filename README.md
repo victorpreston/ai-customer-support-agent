@@ -1,14 +1,9 @@
 # Multi-Agent RAG Customer Support System
 
-[victorpreston](https://github.com/victorpreston) | [LinkedIn](https://www.linkedin.com/in/victor-preston/)
-
 ## What is this project?
 
 This project implements a multi-agent Retrieval-Augmented Generation (RAG) system for customer support. It uses Python, LangChain, and LangGraph to create a conversational AI that can assist with various travel-related queries, including flight bookings, car rentals, hotel reservations, and excursions.
 
-
-![ytb logo](./images/ytb.png)
-[Watch the demonstration video here](https://youtu.be/mPBYvSJuN8Q?si=TGmtyp-XK5O5xQV7)
 
 ### Multi-Agent RAG System Graph
 ![app running](./graphs/multi-agent-rag-system-graph.png)
