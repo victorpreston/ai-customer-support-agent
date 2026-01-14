@@ -4,6 +4,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import tools_condition
 from langchain_core.runnables import RunnableConfig
 
+from customer_support_chat.app.agents import load_agent_config
 from customer_support_chat.app.core.state import State
 from customer_support_chat.app.services.utils import (
   create_tool_node_with_fallback,
@@ -256,12 +257,16 @@ builder.add_conditional_edges(
 )
 builder.add_edge("primary_assistant_tools", "primary_assistant")
 
-# Compile the graph with interrupts
+# Compile the graph with interrupts declared by runtime agent configs
 interrupt_nodes = [
-  "update_flight_sensitive_tools",
-  "book_car_rental_sensitive_tools",
-  "book_hotel_sensitive_tools",
-  "book_excursion_sensitive_tools",
+  node
+  for config in (
+    load_agent_config("flight_booking"),
+    load_agent_config("car_rental"),
+    load_agent_config("hotel_booking"),
+    load_agent_config("excursion"),
+  )
+  for node in config.interrupt_before
 ]
 
 memory = MemorySaver()
